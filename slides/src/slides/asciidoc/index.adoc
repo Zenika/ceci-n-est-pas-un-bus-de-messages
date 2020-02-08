@@ -1,0 +1,29 @@
+:icons: font
+:revealjs_progress: true
+:revealjs_previewLinks: true
+:revealjs_mouseWheel: true
+:revealjs_history: true
+:revealjs_plugin_notes: disabled
+// :revealjs_plugins: {slidesdir}/plugins.js
+// :revealjs_plugins_configuration: {slidesdir}/configs.js
+:customcss: custom.css
+:source-highlighter: highlightjs
+
+:notitle:
+= Ceci n'est pas un bus de messages
+
+[%notitle]
+== Générique
+
+image::images/generique.jpg[background, size=cover]
+
+[NOTE.speaker]
+--
+Attention, cette présentation contient des éléments susceptibles de choquer (d'où le "-18").
+
+Combien d'entre vous sont sensibles aux modes ?
+--
+
+== Merci !
+
+image::https://media.giphy.com/media/1sMH6m5alWauk/giphy.gif[width=200%]

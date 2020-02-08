@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> Support project containing slides s and other elements for a presentatation about exotic messaging systems
+> Support project containing slides and other elements for a presentatation about exotic messaging systems
 
 ## Authors
 

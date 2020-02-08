@@ -1,0 +1,10 @@
+*.classpath
+*.project
+**/.settings/*
+**/target/*
+**/src/**/generated/*
+**/.vscode/*
+*.docx
+.idea/$PRODUCT_WORKSPACE_FILE$
+.idea/.gitignore
+.idea/misc.xml
