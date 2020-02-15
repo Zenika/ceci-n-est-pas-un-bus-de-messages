@@ -1,0 +1,23 @@
+version: '3'
+services:
+# Using artemis, because it exists since 2015!!!
+  artemis:
+    image: vromero/activemq-artemis:latest-alpine
+    ports:
+      - 21161:8161 # accessible at http://localhost:21161
+      - 21616:61616
+      - 21199:1199
+      - 21198:1198
+      - 21404:9404
+    environment:
+      ARTEMIS_USERNAME: artemis
+      ARTEMIS_PASSWORD: artemis
+      ENABLE_JMX: "true"
+      JMX_PORT: 1199
+      JMX_RMI_PORT: 1198
+      ENABLE_JMX_EXPORTER: "true"
+    volumes:
+      - ./config:/var/lib/artemis/etc
+      - ./data:/var/lib/artemis/data
+  # London activemq-cli will send tea production requests
+#  london:
