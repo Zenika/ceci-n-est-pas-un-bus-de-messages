@@ -126,8 +126,6 @@ docs profile) -->
 		</plugins>
 	</build>
 	<modules>
-					<module>slides</module>
-					<module>activemq</module>
-					<module>mail</module>
+		<module>slides</module>
 	</modules>
 </project>
