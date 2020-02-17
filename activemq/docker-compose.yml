@@ -4,10 +4,11 @@ services:
   artemis:
     image: vromero/activemq-artemis:latest-alpine
     ports:
-      - 21161:8161 # accessible at http://localhost:21161
-      - 21616:61616
-      - 21199:1199
-      - 21198:1198
+      - 21161:8161  # accessible at http://localhost:21161
+      - 21672:5672  # AMQP
+      - 21613:61613 # STOMP
+      - 21199:1199  # JMX
+      - 21198:1198  # RMI
       - 21404:9404
     environment:
       ARTEMIS_USERNAME: artemis
@@ -18,6 +19,5 @@ services:
       ENABLE_JMX_EXPORTER: "true"
     volumes:
       - ./config:/var/lib/artemis/etc
-      - ./data:/var/lib/artemis/data
   # London activemq-cli will send tea production requests
 #  london:
