@@ -30,11 +30,11 @@ class CommandsListener(stomp.ConnectionListener):
         else:
             LOGGER.info("Received contract! %s"%inputMessage)
 
-def main():
+def main(name, production):
     connectionAddress = ('127.0.0.1', '21613')
     LOGGER.info('Connecting to %s', connectionAddress)
     conn = stomp.Connection([connectionAddress])
-    conn.set_listener('', CommandsListener(connection=conn, producer="Sri-Lanka", production=10))
+    conn.set_listener('', CommandsListener(connection=conn, producer=name, production=production))
     conn.connect('artemis', 'artemis', wait=True)
     LOGGER.info("Connected! Listening for tea commands!")
     # Listen for messages sent by tea producers
@@ -46,4 +46,8 @@ def main():
     conn.disconnect()
 
 
-main()
+producer = argparse.ArgumentParser(description='A configurable tea producer')
+producer.add_argument('--name', action='store', type=str, required=True, help="Name of the producer")
+producer.add_argument('--production', action='store', type=int, required=True, help="Production of the tea producer")
+args = producer.parse_args()
+main(**vars(args))
