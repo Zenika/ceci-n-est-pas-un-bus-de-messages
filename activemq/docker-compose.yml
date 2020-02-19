@@ -18,6 +18,6 @@ services:
       JMX_RMI_PORT: 1198
       ENABLE_JMX_EXPORTER: "true"
     volumes:
-      - ./config:/var/lib/artemis/etc
+      - ./activemq:/var/lib/artemis/etc
   # London activemq-cli will send tea production requests
 #  london:
