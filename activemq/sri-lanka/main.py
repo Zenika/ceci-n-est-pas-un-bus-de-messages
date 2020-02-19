@@ -23,7 +23,7 @@ class CommandsListener(stomp.ConnectionListener):
             produced = 0
             while produced<command['required']:
 #                LOGGER.debug("Sending %s"%self.outputMessage)
-#                time.sleep(1)
+                time.sleep(0.01)
                 self.connection.send(body=json.dumps(self.outputMessage), destination='tea.proposals')
                 produced += self.outputMessage['quantity']
             LOGGER.info("command should be honored, no?")
@@ -47,7 +47,7 @@ def main(name, production):
 
 
 producer = argparse.ArgumentParser(description='A configurable tea producer')
-producer.add_argument('--name', action='store', type=str, required=True, help="Name of the producer")
-producer.add_argument('--production', action='store', type=int, required=True, help="Production of the tea producer")
+producer.add_argument('--name', action='store', type=str, nargs='?', help="Name of the producer", default='SriLanka')
+producer.add_argument('--production', action='store', type=int, nargs='?', help="Production of the tea producer", default=10)
 args = producer.parse_args()
 main(**vars(args))
