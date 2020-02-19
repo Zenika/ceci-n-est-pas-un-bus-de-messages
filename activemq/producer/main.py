@@ -26,12 +26,12 @@ class CommandsListener(stomp.ConnectionListener):
                 time.sleep(0.01)
                 self.connection.send(body=json.dumps(self.outputMessage), destination='tea.proposals')
                 produced += self.outputMessage['quantity']
-            LOGGER.info("command should be honored, no?")
+            LOGGER.debug("command should be honored, no?")
         else:
             LOGGER.info("Received contract! %s"%inputMessage)
 
-def main(name, production):
-    connectionAddress = ('127.0.0.1', '21613')
+def main(host, port, name, production):
+    connectionAddress = (host, port)
     LOGGER.info('Connecting to %s', connectionAddress)
     conn = stomp.Connection([connectionAddress])
     conn.set_listener('', CommandsListener(connection=conn, producer=name, production=production))
@@ -46,8 +46,11 @@ def main(name, production):
     conn.disconnect()
 
 
+time.sleep(10)
 producer = argparse.ArgumentParser(description='A configurable tea producer')
+producer.add_argument('--host', action='store', type=str, nargs='?', help="ActiveMQ Artemis host", default='localhost')
+producer.add_argument('--port', action='store', type=int, nargs='?', help="ActiveMQ Artemis port", default=21613)
 producer.add_argument('--name', action='store', type=str, nargs='?', help="Name of the producer", default='SriLanka')
-producer.add_argument('--production', action='store', type=int, nargs='?', help="Production of the tea producer", default=10)
+producer.add_argument('--production', action='store', type=int, nargs='?', help="Production of the tea producer", default=1)
 args = producer.parse_args()
 main(**vars(args))

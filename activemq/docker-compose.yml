@@ -20,4 +20,26 @@ services:
     volumes:
       - ./activemq:/var/lib/artemis/etc
   # London activemq-cli will send tea production requests
-#  london:
+  london:
+    build: ./company
+    command: python main.py --host=artemis --port=61613
+    depends_on:
+      - srilanka
+      - china
+      - india
+      - artemis
+  srilanka:
+    build: ./producer
+    command: python main.py --host=artemis --port=61613 --production=7
+    depends_on:
+      - artemis
+  china:
+    build: ./producer
+    command: python main.py --host=artemis --port=61613 --name=china --production=55
+    depends_on:
+      - artemis
+  india:
+    build: ./producer
+    command: python main.py --host=artemis --port=61613 --name=india --production=32
+    depends_on:
+      - artemis
