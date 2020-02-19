@@ -47,10 +47,10 @@ class BuyListener(stomp.ConnectionListener):
         if self.contract:
             self.contract.add(data)
 
-def main():
-    connectionAddress = ('127.0.0.1', '21613')
+def main(host, port, quantity):
+    connectionAddress = (host, port)
     LOGGER.info('Connecting to %s', connectionAddress)
-    conn = stomp.Connection([('127.0.0.1', '21613')])
+    conn = stomp.Connection([connectionAddress])
     conn.connect('artemis', 'artemis', wait=True)
     buying = BuyListener()
     conn.set_listener('', buying)
@@ -58,7 +58,7 @@ def main():
     # Listen for messages sent by tea producers
     listening = False
     while True:
-        buying.contract = Contract(quantity=100)
+        buying.contract = Contract(quantity=quantity)
         LOGGER.info("Sending contract %s"%buying.contract)
         conn.send(body=json.dumps(buying.contract.call_offers()), destination='tea.commands')
         if not listening:
@@ -69,11 +69,16 @@ def main():
                 LOGGER.warning("There is no tea coming from providers, we will retry later.")
         # Now wait for contract completing
         while not buying.contract.complete():
-            time.sleep(1)
+            time.sleep(0.001)
         # Contract is complete ? Find something to do ...
         LOGGER.info("Contract is complete, sending it to all producers")
         conn.send(body=json.dumps(buying.contract.__dict__), destination="tea.contracts")
     conn.disconnect()
 
-
-main()
+time.sleep(15)
+company = argparse.ArgumentParser(description='A configurable tea company')
+company.add_argument('--host', action='store', type=str, nargs='?', help="ActiveMQ Artemis host", default='localhost')
+company.add_argument('--port', action='store', type=int, nargs='?', help="ActiveMQ Artemis port", default=21613)
+company.add_argument('--quantity', action='store', type=int, nargs='?', help="Contract quantity", default=100)
+args = company.parse_args()
+main(**vars(args))
