@@ -27,6 +27,10 @@
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Zenika/ceci-n-est-pas-un-bus-de-messages/issues). 
 
+### 🏭 Building
+To build this project, you simply have to run `mvn package` in the root project.
+Once the build is over, you'll have the revealjs presentation generated in `slides/target/asciidoc/slides/index.html`
+
 ## Show your support
 
 Give a ⭐️ if this project helped you!
