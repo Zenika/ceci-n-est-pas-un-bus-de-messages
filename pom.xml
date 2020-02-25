@@ -23,6 +23,11 @@
 		<url>https://github.com/Zenika/ceci-n-est-pas-un-bus-de-messages/issues</url>
 	</issueManagement>
 
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 	<build>
 		<pluginManagement>
 			<plugins>
