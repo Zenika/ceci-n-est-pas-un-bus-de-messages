@@ -81,7 +81,7 @@ Développeur Java depuis l'an 2000
 
 | Alexandre Fruchaud
 
-https://twitter.com/MalcMacphail[icon:twitter[] @MalcMacphail] / https://github.com/nmacphail[icon:github[] nmacphail]
+https://twitter.com/MalcMacphail[icon:twitter[] @MalcMacphail] / https://github.com/mmacphail[icon:github[] mmacphail]
 
 |===
 
