@@ -5,14 +5,16 @@ import java.time.LocalDate;
 public class Message {
 
     private String id;
+    private String topic;
     private LocalDate date;
     private Greeting payload;
 
     public Message() {
     }
 
-    public Message(String id, LocalDate date, Greeting payload) {
+    public Message(String id, String topic, LocalDate date, Greeting payload) {
         this.id = id;
+        this.topic = topic;
         this.date = date;
         this.payload = payload;
     }
@@ -23,6 +25,14 @@ public class Message {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public LocalDate getDate() {
@@ -45,6 +55,7 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id='" + id + '\'' +
+                ", topic='" + topic + '\'' +
                 ", date=" + date +
                 ", payload=" + payload +
                 '}';
