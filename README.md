@@ -28,7 +28,9 @@
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Zenika/ceci-n-est-pas-un-bus-de-messages/issues). 
 
 ### 🏭 Building
-To build this project, you simply have to run `mvn package` in the root project.
+To build this project, first install [graphviz](https://www.graphviz.org/) on your machine.
+
+Then, you simply have to run `mvn package` in the root project.
 Once the build is over, you'll have the revealjs presentation generated in `slides/target/asciidoc/slides/index.html`
 
 ## Show your support
