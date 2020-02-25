@@ -93,7 +93,7 @@ public class EventConsumer {
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
-                log.info("Connection to psotgres closed");
+                log.info("Connection to postgres closed");
             }
         }
     };
