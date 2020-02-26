@@ -1,4 +1,4 @@
-package com.zenika.talk;
+package com.zenika.talk.events.control;
 
 import java.time.LocalDate;
 

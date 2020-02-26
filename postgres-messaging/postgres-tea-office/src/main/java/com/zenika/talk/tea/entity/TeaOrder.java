@@ -1,17 +1,17 @@
-package com.zenika.talk;
+package com.zenika.talk.tea.entity;
 
 import java.util.Objects;
 
-public class TeaSupply {
+public class TeaOrder {
 
 	private String office;
 	private long amount;
 	private String unit;
 
-	public TeaSupply() {
+	public TeaOrder() {
 	}
 
-	public TeaSupply(String office, long amount, String unit) {
+	public TeaOrder(String office, long amount, String unit) {
 		this.office = office;
 		this.amount = amount;
 		this.unit = unit;
@@ -45,10 +45,10 @@ public class TeaSupply {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		TeaSupply teaSupply = (TeaSupply) o;
-		return amount == teaSupply.amount &&
-			Objects.equals(office, teaSupply.office) &&
-			Objects.equals(unit, teaSupply.unit);
+		TeaOrder teaOrder = (TeaOrder) o;
+		return amount == teaOrder.amount &&
+			Objects.equals(office, teaOrder.office) &&
+			Objects.equals(unit, teaOrder.unit);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class TeaSupply {
 
 	@Override
 	public String toString() {
-		return "TeaSupply{" +
+		return "TeaOrder{" +
 			"office='" + office + '\'' +
 			", amount=" + amount +
 			", unit='" + unit + '\'' +

@@ -1,4 +1,4 @@
-package com.zenika.talk;
+package com.zenika.talk.office.entity;
 
 public enum OfficeType {
 	LOCAL,

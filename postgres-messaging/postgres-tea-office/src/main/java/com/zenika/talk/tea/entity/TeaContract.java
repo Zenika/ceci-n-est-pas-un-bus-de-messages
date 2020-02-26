@@ -1,4 +1,4 @@
-package com.zenika.talk;
+package com.zenika.talk.tea.entity;
 
 import java.util.Objects;
 

@@ -1,5 +1,7 @@
-package com.zenika.talk;
+package com.zenika.talk.tea.boundary;
 
+import com.zenika.talk.tea.entity.TeaContract;
+import com.zenika.talk.tea.entity.TeaOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.zenika.talk;
+package com.zenika.talk.office.entity;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
