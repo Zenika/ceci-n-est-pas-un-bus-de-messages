@@ -7,5 +7,58 @@ services:
       - 5432:5432
     volumes:
       - ./add-messages-table.sql:/docker-entrypoint-initdb.d/add-messages-table.sql
+      - ./add-contracts-table.sql:/docker-entrypoint-initdb.d/add-contracts-table.sql
     environment:
       POSTGRES_PASSWORD: postgres
+    networks:
+      - dev
+  
+  london:
+    image: zenika/talk/postgres-tea-office:latest
+    container_name: london
+    ports:
+      - 8080:8080
+    environment:
+      OFFICE_NAME: London
+      OFFICE_TYPE: CENTRAL
+      OFFICE_TEA_STOCK: 0
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    networks:
+      - dev
+
+  china:
+    image: zenika/talk/postgres-tea-office:latest
+    container_name: china
+    environment:
+      OFFICE_NAME: China
+      OFFICE_TYPE: LOCAL
+      OFFICE_TEA_STOCK: 700
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    networks:
+      - dev
+
+  india:
+    image: zenika/talk/postgres-tea-office:latest
+    container_name: india
+    environment:
+      OFFICE_NAME: India
+      OFFICE_TYPE: LOCAL
+      OFFICE_TEA_STOCK: 200
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    networks:
+      - dev
+
+  srilanka:
+    image: zenika/talk/postgres-tea-office:latest
+    container_name: sriklanka
+    environment:
+      OFFICE_NAME: Sri-Lanka
+      OFFICE_TYPE: LOCAL
+      OFFICE_TEA_STOCK: 300
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge

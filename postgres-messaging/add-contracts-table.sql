@@ -1,0 +1,8 @@
+CREATE TABLE public.contract (
+  id INT GENERATED ALWAYS AS IDENTITY,
+  customer VARCHAR(128) NOT NULL,
+  supplier VARCHAR(128) NOT NULL,
+  amount INT NOT NULL,
+  unit VARCHAR(1) NOT NULL,
+	CONSTRAINT contract_pk PRIMARY KEY (id)
+);

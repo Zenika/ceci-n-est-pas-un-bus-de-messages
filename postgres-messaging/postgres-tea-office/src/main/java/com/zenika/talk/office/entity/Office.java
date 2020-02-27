@@ -12,11 +12,18 @@ public class Office {
 	@Value("${office.type}")
 	private OfficeType type;
 
+	@Value("${office.tea.stock}")
+	private long teaStock;
+
 	public String getName() {
 		return name;
 	}
 
 	public OfficeType getType() {
 		return type;
+	}
+
+	public long getTeaStock() {
+		return teaStock;
 	}
 }

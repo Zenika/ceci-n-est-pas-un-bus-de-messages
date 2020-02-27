@@ -1,5 +1,7 @@
 package com.zenika.talk.tea.entity;
 
+import com.zenika.talk.office.entity.Office;
+
 import java.util.Objects;
 
 public class TeaOrder {
@@ -9,6 +11,14 @@ public class TeaOrder {
 	private String unit;
 
 	public TeaOrder() {
+	}
+
+	public static TeaOrder orderFor(Office office, long amount) {
+		return new TeaOrder(office.getName(), amount, "t");
+	}
+
+	public static TeaOrder orderFor(Office office, long amount, String unit) {
+		return new TeaOrder(office.getName(), amount, unit);
 	}
 
 	public TeaOrder(String office, long amount, String unit) {

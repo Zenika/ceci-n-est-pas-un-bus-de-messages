@@ -1,5 +1,7 @@
 package com.zenika.talk.tea.entity;
 
+import com.zenika.talk.office.entity.Office;
+
 import java.util.Objects;
 
 public class TeaSupply {
@@ -7,6 +9,10 @@ public class TeaSupply {
 	private String office;
 	private long amount;
 	private String unit;
+
+	public static TeaSupply availabilityFor(Office office, String unit) {
+		return new TeaSupply(office.getName(), office.getTeaStock(),  unit);
+	}
 
 	public TeaSupply() {
 	}
@@ -17,7 +23,7 @@ public class TeaSupply {
 		this.unit = unit;
 	}
 
-	public String getOffice() {
+    public String getOffice() {
 		return office;
 	}
 

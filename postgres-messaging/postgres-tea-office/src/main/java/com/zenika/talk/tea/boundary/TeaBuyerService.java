@@ -1,6 +1,8 @@
 package com.zenika.talk.tea.boundary;
 
 import com.zenika.talk.events.boundary.EventEmitter;
+import com.zenika.talk.office.boundary.ContractService;
+import com.zenika.talk.office.entity.Contract;
 import com.zenika.talk.office.entity.Office;
 import com.zenika.talk.tea.entity.TeaContract;
 import com.zenika.talk.tea.entity.TeaOrder;
@@ -11,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import java.util.Optional;
 
 @Service
 public class TeaBuyerService {
@@ -28,26 +30,33 @@ public class TeaBuyerService {
 	@Autowired
 	Office office;
 
+	@Autowired
+	ContractService contractService;
+
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(TeaBuyerService.class);
 
+	public void orderTea(long amount) {
+		LOGGER.info("Ordering tea: {} tons", amount);
 
-	@PostConstruct
-	public void initTest() {
-		LOGGER.info("Initializing and sending a test order");
-		orderTea(new TeaOrder(office.getName(), 300L, "t"));
+		contractService.setAmountToOrder(amount);
+
+		eventEmitter.sendEvent(ordersTopic, TeaOrder.orderFor(office, amount, "t"));
 	}
 
-	public void onTeaSupply(TeaSupply teaSupply) {
-		LOGGER.info("Received Tea Supply: {}", teaSupply);
-	}
+	public void onTeaSupply(final TeaSupply teaSupply) {
+		LOGGER.info("Received a message from {} office. Amount of tea supply: {} {}",
+				teaSupply.getOffice(), teaSupply.getAmount(), teaSupply.getUnit());
 
-	public void orderTea(TeaOrder order) {
-		LOGGER.info("Ordering tea: {}", order);
-		eventEmitter.sendEvent(ordersTopic, order);
+		Optional<Contract> contract = contractService.handleSupplyNotification(teaSupply);
+
+		contract.ifPresent(c -> sendContract(c.generate()));
 	}
 
 	public void sendContract(TeaContract contract) {
-		LOGGER.info("Sending contract: {}", contract);
+		LOGGER.info("Sending a contract from this office ({}) to supplier {} for {} {} of tea",
+				contract.getCustomer(), contract.getSupplier(), contract.getAmount(), contract.getUnit());
+
 		eventEmitter.sendEvent(contractsTopic, contract);
 	}
 }
