@@ -35,13 +35,19 @@ services:
     command: python main.py --artemis-host=artemis --artemis-port=61613 --production=7
     depends_on:
       - artemis
+    ports:
+        - 21881:8080
   china:
     build: ./producer
     command: python main.py --artemis-host=artemis --artemis-port=61613 --name=china --production=55
     depends_on:
       - artemis
+    ports:
+        - 21882:8080
   india:
     build: ./producer
     command: python main.py --artemis-host=artemis --artemis-port=61613 --name=india --production=32
     depends_on:
       - artemis
+    ports:
+        - 21883:8080

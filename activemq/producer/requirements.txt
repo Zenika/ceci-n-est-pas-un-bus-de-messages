@@ -1,1 +1,4 @@
 stomp.py==6.0.0
+CherryPy
+babel
+humanize
